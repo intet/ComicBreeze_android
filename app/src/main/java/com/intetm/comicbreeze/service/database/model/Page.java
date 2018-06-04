@@ -1,31 +1,23 @@
 package com.intetm.comicbreeze.service.database.model;
 
-import javax.persistence.*;
+
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 
 @Entity
-@Table(name = "comic_page")
 public class Page {
 
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @PrimaryKey
     public Long id;
 
-    @ManyToOne()
-    @JoinColumn(name = "comic", referencedColumnName = "id")
-    public Comic comic;
+    @ColumnInfo(name = "comic")
+    public Integer comic;
 
-    @Column(name = "index")
+    @ColumnInfo(name = "index")
     public int index;
 
-    @Column(name = "url")
+    @ColumnInfo(name = "url")
     public String url;
 
-
-    public Page() {
-    }
-
-    public Page(Long id) {
-        this.id = id;
-    }
 }

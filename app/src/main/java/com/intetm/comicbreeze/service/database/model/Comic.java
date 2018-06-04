@@ -1,6 +1,8 @@
 package com.intetm.comicbreeze.service.database.model;
 
 import java.util.List;
+
+import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
@@ -8,39 +10,21 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity
 public class Comic {
 
-    @JsonIgnore
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @PrimaryKey
     public Long id;
 
-    @Column(name = "name", nullable = false)
+    @ColumnInfo(name = "name")
     public String name;
 
-    @Column(name = "about", nullable = false)
+    @ColumnInfo(name = "about")
     public String about;
 
-    @Column(name = "url", nullable = false)
+    @ColumnInfo(name = "url")
     public String url;
 
-    @Column(name = "img_url", nullable = false)
+    @ColumnInfo(name = "img_url")
     public String imgUrl;
 
-    @Column(name = "page_count", nullable = false)
+    @ColumnInfo(name = "page_count")
     public int pageCount;
-
-    @JsonIgnore
-    @Column(name = "expected_count", nullable = false)
-    public int expectedCount;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "comic", fetch = FetchType.LAZY)
-    public List<Page> pages;
-
-    public Comic() {
-    }
-
-    public Comic(Long id) {
-        this.id = id;
-    }
 }

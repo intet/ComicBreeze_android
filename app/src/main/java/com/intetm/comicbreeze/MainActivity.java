@@ -5,6 +5,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.intetm.comicbreeze.service.database.DatabaseService;
+import com.intetm.comicbreeze.service.database.dao.ComicDao;
+import com.intetm.comicbreeze.service.database.model.Comic;
+
+import java.util.Observable;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -14,6 +20,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void btnClick(View v){
-        ((TextView)findViewById(R.id.main_text)).setText("test!");
+        Comic c =  new Comic();
+        c.name = "test name";
+        ComicDao comicDao = DatabaseService.getInstance().db.comicDao();
+      //  comicDao.insertAll(c);
+      //  ((TextView)findViewById(R.id.main_text)).setText(comicDao.getAll().size());
     }
 }
