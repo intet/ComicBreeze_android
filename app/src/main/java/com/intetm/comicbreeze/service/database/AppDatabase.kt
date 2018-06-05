@@ -7,7 +7,7 @@ import com.intetm.comicbreeze.service.database.dao.ComicDao
 import com.intetm.comicbreeze.service.database.model.Comic
 import com.intetm.comicbreeze.service.database.model.Page
 
-@Database(entities = [(Comic::class), (Page::class)], version = 1)
+@Database(entities = [(Comic::class), (Page::class)], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun comicDao(): ComicDao
 }

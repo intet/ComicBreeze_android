@@ -1,18 +1,12 @@
 package com.intetm.comicbreeze
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.TextView
-
 import com.intetm.comicbreeze.service.database.DatabaseService
-import com.intetm.comicbreeze.service.database.dao.ComicDao
 import com.intetm.comicbreeze.service.database.model.Comic
-import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.async
-import kotlinx.coroutines.experimental.withContext
-
-import java.util.Observable
 
 class MainActivity : AppCompatActivity() {
 
