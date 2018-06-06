@@ -1,9 +1,6 @@
 package com.intetm.comicbreeze.service.database.dao
 
-import android.arch.persistence.room.Dao
-import android.arch.persistence.room.Delete
-import android.arch.persistence.room.Insert
-import android.arch.persistence.room.Query
+import android.arch.persistence.room.*
 
 import com.intetm.comicbreeze.service.database.model.Comic
 
@@ -17,4 +14,10 @@ interface ComicDao {
 
     @Delete
     fun delete(comic: Comic)
+
+    @Query("SELECT * FROM comic where name = :name")
+    fun findByName(name: String): Comic?
+
+    @Update()
+    fun update(comic: Comic)
 }

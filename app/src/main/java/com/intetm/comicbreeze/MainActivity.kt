@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.TextView
+import com.intetm.comicbreeze.service.comic.ComicListService
 import com.intetm.comicbreeze.service.database.DatabaseService
 import com.intetm.comicbreeze.service.database.model.Comic
-import com.intetm.comicbreeze.service.network.NetService
 import kotlinx.coroutines.experimental.async
 
 class MainActivity : AppCompatActivity() {
@@ -21,8 +21,7 @@ class MainActivity : AppCompatActivity() {
         c.name = "test name"
 
         val comicDao = DatabaseService.instance!!.db.comicDao()
-        val service = NetService.create()
-        service.loadComic()
-        findViewById<(TextView)>(R.id.main_text).setText("3"+comicDao.all.size)
+        ComicListService.instance!!.loadComic()
+        findViewById<(TextView)>(R.id.main_text).setText("Всего комиксов"+comicDao.all.size)
     }
 }
