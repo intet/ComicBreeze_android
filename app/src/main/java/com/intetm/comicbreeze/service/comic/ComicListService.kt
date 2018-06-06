@@ -1,12 +1,9 @@
 package com.intetm.comicbreeze.service.comic
 
-import android.content.Context
-import android.util.Log
 import com.intetm.comicbreeze.service.database.DatabaseService
 import com.intetm.comicbreeze.service.database.dao.ComicDao
 import com.intetm.comicbreeze.service.database.model.Comic
 import com.intetm.comicbreeze.service.network.NetApi
-import com.intetm.comicbreeze.service.network.Util
 
 class ComicListService private constructor(comicDao:ComicDao) {
     private val api:NetApi = NetApi.create()
