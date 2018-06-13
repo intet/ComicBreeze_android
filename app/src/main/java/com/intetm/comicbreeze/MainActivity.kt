@@ -3,18 +3,16 @@ package com.intetm.comicbreeze
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
-import android.widget.TextView
+import android.widget.AdapterView
+import android.widget.GridView
+import android.widget.Toast
 import com.intetm.comicbreeze.service.comic.ComicListService
 import com.intetm.comicbreeze.service.database.DatabaseService
 import com.intetm.comicbreeze.service.database.model.Comic
+import com.intetm.comicbreeze.view.ImageAdapter
 import kotlinx.coroutines.experimental.async
 
 class MainActivity : AppCompatActivity() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-    }
 
     fun btnClick(v: View) = async {
         val c = Comic()
@@ -22,6 +20,18 @@ class MainActivity : AppCompatActivity() {
 
         val comicDao = DatabaseService.instance!!.db.comicDao()
         ComicListService.instance!!.loadComic()
-        findViewById<(TextView)>(R.id.main_text).setText("Всего комиксов"+comicDao.all.size)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val gridview: GridView = findViewById(R.id.gridview)
+        gridview.adapter = ImageAdapter(this)
+
+        gridview.onItemClickListener =
+                AdapterView.OnItemClickListener { parent, v, position, id ->
+                    Toast.makeText(this, "$position", Toast.LENGTH_SHORT).show()
+                }
     }
 }
