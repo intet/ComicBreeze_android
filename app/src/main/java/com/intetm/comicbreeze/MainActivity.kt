@@ -9,7 +9,7 @@ import android.widget.Toast
 import com.intetm.comicbreeze.service.comic.ComicListService
 import com.intetm.comicbreeze.service.database.DatabaseService
 import com.intetm.comicbreeze.service.database.model.Comic
-import com.intetm.comicbreeze.view.ImageAdapter
+import com.intetm.comicbreeze.view.grid.GridAdapter
 import kotlinx.coroutines.experimental.async
 
 class MainActivity : AppCompatActivity() {
@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val gridview: GridView = findViewById(R.id.gridview)
-        gridview.adapter = ImageAdapter(this)
+        gridview.adapter = GridAdapter(this)
 
         gridview.onItemClickListener =
                 AdapterView.OnItemClickListener { parent, v, position, id ->
