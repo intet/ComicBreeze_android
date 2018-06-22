@@ -9,6 +9,9 @@ interface ComicDao {
     @get:Query("SELECT * FROM comic")
     val all: List<Comic>
 
+    @Query("select count(1) from comic ")
+    fun count(): Int
+
     @Insert
     fun insertAll(vararg comics: Comic)
 

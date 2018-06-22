@@ -6,6 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.intetm.comicbreeze.R
+import com.intetm.comicbreeze.service.database.DatabaseService
+import com.intetm.comicbreeze.service.database.model.Comic
+import kotlinx.coroutines.experimental.async
 
 
 private val mThumbIds = arrayOf<Int>(
@@ -23,8 +26,11 @@ private val mThumbIds = arrayOf<Int>(
 
 
 class GridAdapter(private val mContext: Context) : BaseAdapter() {
+    private val comics = mutableListOf<Comic>()
 
-    override fun getCount(): Int = mThumbIds.size
+    override fun getCount(): Int {
+        return this.comics.size
+    }
 
     override fun getItem(position: Int): Any? = null
 
@@ -33,15 +39,22 @@ class GridAdapter(private val mContext: Context) : BaseAdapter() {
     // create a new ImageView for each item referenced by the Adapter
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val inflater = mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val imageView: View
+        val comicView: View
         if (convertView == null) {
             // if it's not recycled, initialize some attributes
-            imageView = inflater.inflate(R.layout.comic_grid_item, null);
-            imageView.layoutParams = ViewGroup.LayoutParams(185, 185)
-            imageView.setPadding(8, 8, 8, 8)
+            comicView = inflater.inflate(R.layout.comic_grid_item, null)
+            comicView.layoutParams = ViewGroup.LayoutParams(185, 185)
+            comicView.setPadding(8, 8, 8, 8)
         } else {
-            imageView = convertView
+            comicView = convertView
         }
-        return imageView
+        return comicView
+    }
+
+    fun refresh() = async {
+        comics.clear()
+        val comicDao = DatabaseService.instance!!.db.comicDao()
+        comics.addAll(comicDao.all)
+        notifyDataSetChanged()
     }
 }
