@@ -1,15 +1,16 @@
 package com.intetm.comicbreeze
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.AdapterView
 import android.widget.GridView
-import android.widget.Toast
 import com.intetm.comicbreeze.service.comic.ComicListService
 import com.intetm.comicbreeze.service.database.DatabaseService
 import com.intetm.comicbreeze.service.database.model.Comic
 import com.intetm.comicbreeze.view.grid.GridAdapter
+import com.intetm.comicbreeze.view.page.ComicPageActivity
 import kotlinx.coroutines.experimental.async
 
 class MainActivity : AppCompatActivity() {
@@ -31,7 +32,10 @@ class MainActivity : AppCompatActivity() {
 
         gridview.onItemClickListener =
                 AdapterView.OnItemClickListener { parent, v, position, id ->
-                    Toast.makeText(this, "$position", Toast.LENGTH_SHORT).show()
+                    run {
+                        val intent = Intent(this, ComicPageActivity::class.java).apply { putExtra("TEST", "TEST") }
+                        startActivity(intent)
+                    }
                 }
         adapter.refresh()
     }
