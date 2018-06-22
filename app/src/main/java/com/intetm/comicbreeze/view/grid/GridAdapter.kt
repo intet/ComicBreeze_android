@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.TextView
 import com.intetm.comicbreeze.R
 import com.intetm.comicbreeze.service.database.DatabaseService
 import com.intetm.comicbreeze.service.database.model.Comic
@@ -43,11 +44,13 @@ class GridAdapter(private val mContext: Context) : BaseAdapter() {
         if (convertView == null) {
             // if it's not recycled, initialize some attributes
             comicView = inflater.inflate(R.layout.comic_grid_item, null)
-            comicView.layoutParams = ViewGroup.LayoutParams(185, 185)
+            comicView.layoutParams = ViewGroup.LayoutParams(500, 200)
             comicView.setPadding(8, 8, 8, 8)
         } else {
             comicView = convertView
         }
+        val textView = comicView.findViewById<TextView>(R.id.grid_item_label)
+        textView.text = this.comics[position].name
         return comicView
     }
 

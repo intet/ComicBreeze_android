@@ -11,13 +11,4 @@
         android:gravity="center_horizontal"
         android:text="Letter"
         android:textSize="15sp" />
-
-    <TextView
-        android:id="@+id/grid_item_letter"
-        android:layout_width="60sp"
-        android:layout_height="60sp"
-        android:layout_weight="1"
-        android:gravity="center_horizontal"
-        android:text="A"
-        android:textSize="30sp" />
 </android.support.constraint.ConstraintLayout>
