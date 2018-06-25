@@ -5,7 +5,8 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.ImageView
+import com.bumptech.glide.Glide
 import com.intetm.comicbreeze.R
 
 
@@ -18,9 +19,14 @@ class ComicPageFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val result = inflater.inflate(R.layout.comic_page_fragment, container, false)
-        val pageHeader = result.findViewById(R.id.displayText) as TextView
+        /*val pageHeader = result.findViewById(R.id.displayText) as TextView
         val header = String.format("Фрагмент %d", pageNumber + 1)
-        pageHeader.text = header
+        pageHeader.text = header*/
+        val imageView = result.findViewById<ImageView>(R.id.iv_photo)
+
+        Glide.with(this)
+                .load("http://i.imgur.com/ovr0NAF.jpg")
+                .into(imageView)
         return result
     }
 
