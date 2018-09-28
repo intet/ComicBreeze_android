@@ -6,7 +6,7 @@ allprojects {
     }
 }
 buildscript {
-    ext.kotlin_version = '1.2.41'
+    ext.kotlin_version = '1.2.71'
     repositories {
         jcenter()
         google()
@@ -20,7 +20,7 @@ buildscript {
     }
 }
 task wrapper(type: Wrapper) {
-    gradleVersion = '4.8' // Желаемая версия
+    gradleVersion = '4.10.2' // Желаемая версия
 }
 task clean(type: Delete) {
     delete rootProject.buildDir
